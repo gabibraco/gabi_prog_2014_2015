@@ -90,14 +90,14 @@ public class VentanaConversor extends JFrame {
 								
 				try{
 				euros=Float.parseFloat(Caja1.getText());
-				Caja2.setText(String.valueOf(euros*valorConversion));
 				Caja3.setText(String.valueOf(euros));
 				if(euros<=500 && euros>0 ){
-				
+					Caja2.setText(String.valueOf(euros*valorConversion));
 					Caja3.setText("Todo ok");}
-					else{
+					else{					
 						Caja2.setText("");
 						Caja3.setText("Los euros deben estar entre 0 y 500");}
+				
 					}
 					
 				catch(Exception e){	

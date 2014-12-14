@@ -26,7 +26,7 @@ public class VentanaConversor extends JFrame {
 		
 		//Definimos la ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 246, 200);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -40,12 +40,12 @@ public class VentanaConversor extends JFrame {
 		
 		//Etiqueta Dolares
 		Etiquetadolares = new JLabel("Dolares");
-		Etiquetadolares.setBounds(10, 26, 86, 20);
+		Etiquetadolares.setBounds(10, 85, 86, 20);
 		contentPane.add(Etiquetadolares);
 		
 		//Etiqueta Euros
 		EtiquetaEuros = new JLabel("Euros");
-		EtiquetaEuros.setBounds(10, 93, 86, 20);
+		EtiquetaEuros.setBounds(10, 20, 86, 20);
 		contentPane.add(EtiquetaEuros);
 		
 		//Caja2
@@ -65,7 +65,6 @@ public class VentanaConversor extends JFrame {
 				float euros;
 				euros=Float.parseFloat(Caja1.getText());
 				Caja2.setText(String.valueOf(euros*valorConversion));
-				
 			}
 		});
 		
