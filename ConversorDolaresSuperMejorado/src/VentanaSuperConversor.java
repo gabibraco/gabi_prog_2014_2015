@@ -181,14 +181,7 @@ public class VentanaSuperConversor extends JFrame {
 		caja3.setForeground(Color.RED);
 		caja3.setBounds(10, 195, 414, 22);
 		contentPane.add(caja3);
-		caja3.setColumns(10);
-		
-		
-		
-		
-		
-		
-		
+		caja3.setColumns(10);	
 		
 	}
 }
