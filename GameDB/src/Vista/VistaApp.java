@@ -12,12 +12,17 @@ import javax.swing.JMenuItem;
 import java.awt.CardLayout;
 
 public class VistaApp extends JFrame {
-
+	//DEFINICION DE VARIABLES
 	private JPanel contentPane;
+	private JPanel Principal;
+	private JPanel Juegos;
+	private JPanel Perfil;
+	private JMenu mnPrincipal;
+	private JMenu mnJuegos;
+	private JMenu mnPerfil;
+	
 	VistaPrincipal vistaPrincipal = new VistaPrincipal();
-	/**
-	 * Create the frame.
-	 */
+	
 	public VistaApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 465);
@@ -25,39 +30,42 @@ public class VistaApp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaPrincipal, "Vista_Principal");
-		
+		contentPane.add(vistaPrincipal, "Vista_Principal");//Añadimos Vista principal
+		//INTRODUCIMOS EL MENU
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnPrincipal = new JMenu("Principal");
+		//MENU PRINCIPAL
+		mnPrincipal = new JMenu("Principal");
 		menuBar.add(mnPrincipal);
-		
 		JMenuItem mntmPrincipal = new JMenuItem("Principal");
 		mnPrincipal.add(mntmPrincipal);
 		
-		JMenu mnJuegos = new JMenu("Juegos");
+		//MENU JUEGOS
+		mnJuegos = new JMenu("Juegos");
 		menuBar.add(mnJuegos);
-		
 		JMenuItem mntmJuegos = new JMenuItem("Juegos");
 		mnJuegos.add(mntmJuegos);
 		
-		JMenu mnPerfil = new JMenu("Perfil");
+		//MENU PERFIL
+		mnPerfil = new JMenu("Perfil");
 		menuBar.add(mnPerfil);
-		
 		JMenuItem mntmPerfil = new JMenuItem("Perfil");
 		mnPerfil.add(mntmPerfil);
 		
+		// AÑADIMOS 3 JPANEL DENTRO DEL CARDLAYUOT
 		
-		JPanel Principal = new JPanel();
-		contentPane.add(Principal, "Principal");
+			//PRINCIPAL
+			Principal = new JPanel();
+			contentPane.add(Principal, "Principal");
 		
-		
-		JPanel Juegos = new JPanel();
-		contentPane.add(Juegos, "Juegos");
-		
-		JPanel Perfil = new JPanel();
-		contentPane.add(Perfil, "Perfil");
+			//JUEGOS
+			Juegos = new JPanel();
+			contentPane.add(Juegos, "Juegos");
+			
+			//Perfil
+			Perfil = new JPanel();
+			contentPane.add(Perfil, "Perfil");
 		
 		
 		
