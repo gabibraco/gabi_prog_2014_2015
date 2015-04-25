@@ -38,7 +38,7 @@ public class VistaPrincipal extends JPanel {
 	private JComboBox<String> comboBox;
 	private JButton btnLogIn;
 	private JButton btnRegistrarse;
-	UsuariosModel usuarios;
+	UsuariosModel Usuarios;
 	
 	
 	
@@ -98,8 +98,8 @@ public class VistaPrincipal extends JPanel {
 		add(btnRegistrarse);
 		
 		//Inserccion de los items en el comboBox por medio del iterador que nos lo rellenara
-			usuarios=new UsuariosModel();
-			Iterator<String>ITusuario=usuarios.getUsuarios().iterator();
+			Usuarios=new UsuariosModel();
+			Iterator<String>ITusuario=Usuarios.getUsuarios().iterator();
 		
 			while(ITusuario.hasNext()){
 				comboBox.addItem((String)ITusuario.next());

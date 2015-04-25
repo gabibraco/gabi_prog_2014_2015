@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class UsuariosModel {
 	
 	//Consulta de nombres de usuarios
-	private final static String USUARIOS_SEL="SELECT * FROM USUARIO";
-	private final static String USUARIO_COL="Usuario";
+	private final static String Usuarios_SEL="SELECT * FROM Usuarios";
+	private final static String Usuarios_COL="Usuarios";
 	
 	//Conexion
 	private Connection conexion;
@@ -34,12 +34,12 @@ public class UsuariosModel {
 				//Crea el statement para la conexion( prepara la conexion)
 				instruccion=this.conexion.createStatement();
 				//Pide los datos de la tabla usuarios ( o los recoje)
-				conjuntoResultados=instruccion.executeQuery(USUARIOS_SEL);
+				conjuntoResultados=instruccion.executeQuery(Usuarios_SEL);
 			
 				//Listaremos por pantalla los datos
 				while(conjuntoResultados.next()){
 				//Aqui añadimos el nombre de usuario al ArrayList usuarios
-					Usuarios.add(conjuntoResultados.getString(USUARIO_COL));
+					Usuarios.add(conjuntoResultados.getString(Usuarios_COL));
 				}
 				//Devolvemos usuarios del Arraylist.
 				return Usuarios;

@@ -7,7 +7,7 @@ public class GamesDBApp {
 	ConexionDB gameDB;
 	public static void main(String[] args) {
 		//ESTABLECIENDO LA CONEXION A LA BBDD y GENERANDO EL OBJETO
-		ConexionDB Usuarios=new ConexionDB("localhost","gamedb","root","damdaw2015");
+		ConexionDB Usuarios=new ConexionDB("localhost","gamedb","root02","PROGBD2015");
 		
 		//INTENTA CONECTARTE
 		if(Usuarios.connectDB()==true){
