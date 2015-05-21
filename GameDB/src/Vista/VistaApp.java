@@ -6,22 +6,33 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.AbstractAction;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import Controlador.MainControler;
+
+
+
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VistaApp extends JFrame {
 	//DEFINICION DE VARIABLES
 	private JPanel contentPane;
-	private JPanel Principal;
-	private JPanel Juegos;
 	private JPanel Perfil;
 	private JMenu mnPrincipal;
 	private JMenu mnJuegos;
 	private JMenu mnPerfil;
+	private VistaPrincipal_1 vPrincipal;
 	
-	VistaPrincipal vistaPrincipal = new VistaPrincipal();
+	private VistaJuegos vJuegos;
+	private JPanel panel;
 	
 	public VistaApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +41,7 @@ public class VistaApp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(vistaPrincipal, "Vista_Principal");//Añadimos Vista principal
+		
 		//INTRODUCIMOS EL MENU
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -39,12 +50,22 @@ public class VistaApp extends JFrame {
 		mnPrincipal = new JMenu("Principal");
 		menuBar.add(mnPrincipal);
 		JMenuItem mntmPrincipal = new JMenuItem("Principal");
+		mntmPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainControler.getInstance().showInicio();	
+			}
+		});
 		mnPrincipal.add(mntmPrincipal);
 		
 		//MENU JUEGOS
 		mnJuegos = new JMenu("Juegos");
 		menuBar.add(mnJuegos);
 		JMenuItem mntmJuegos = new JMenuItem("Juegos");
+		mntmJuegos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainControler.getInstance().showJuegos();
+			}
+		});
 		mnJuegos.add(mntmJuegos);
 		
 		//MENU PERFIL
@@ -52,23 +73,39 @@ public class VistaApp extends JFrame {
 		menuBar.add(mnPerfil);
 		JMenuItem mntmPerfil = new JMenuItem("Perfil");
 		mnPerfil.add(mntmPerfil);
-		
-		// AÑADIMOS 3 JPANEL DENTRO DEL CARDLAYUOT
-		
-			//PRINCIPAL
-			Principal = new JPanel();
-			contentPane.add(Principal, "Principal");
-		
-			//JUEGOS
-			Juegos = new JPanel();
-			contentPane.add(Juegos, "Juegos");
+			
+			panel = new JPanel();
+			contentPane.add(panel, "panel");
+			panel.setLayout(new CardLayout(0, 0));
+			//Añadimos Vista principal
+			vPrincipal= new VistaPrincipal_1();
+			panel.add(vPrincipal, "Principal");
+			//Añadimos Vista juegos
+			vJuegos= new VistaJuegos();
+			panel.add(vJuegos, "Juegos");
 			
 			//Perfil
 			Perfil = new JPanel();
-			contentPane.add(Perfil, "Perfil");
-		
+			panel.add(Perfil, "Perfil");
+			
 		
 		
 	}
+	public void showVistaPrincipal_1(ArrayList<String> Usuarios){
+		this.vPrincipal.putUsuarios(Usuarios);
+	}
+	public void showVistaPrincipal_1() {
+		CardLayout c=(CardLayout)this.panel.getLayout();
+		c.show(panel, "Principal");
+		
+	}
+
+	public void showvJuegos() {
+		CardLayout c=(CardLayout)this.panel.getLayout();
+		c.show(panel, "Juegos");
+		
+		
+	}
+
 
 }

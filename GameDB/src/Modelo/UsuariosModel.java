@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import Controlador.MainControler;
 
 public class UsuariosModel {
 	
@@ -14,7 +14,7 @@ public class UsuariosModel {
 	private final static String Usuarios_COL="Usuarios";
 	
 	//Conexion
-	private Connection conexion;
+	ConexionDB gameDB;
 	private Statement instruccion;
 	private ResultSet conjuntoResultados;
 	
@@ -24,15 +24,16 @@ public class UsuariosModel {
 	public UsuariosModel() {
 		
 		//Obtenemos la conexion de datos
-		conexion=ConexionDB.getConexion();
+		gameDB=ConexionDB.getInstance();
 		
 		//Iniciamos el Array de Usuarios
 		Usuarios=new ArrayList<String>();
 	}
 	public ArrayList<String> getUsuarios(){
+		ArrayList<String> usuarios=new ArrayList<String>();
 		try{
 				//Crea el statement para la conexion( prepara la conexion)
-				instruccion=this.conexion.createStatement();
+				instruccion=gameDB.getConexion().createStatement();
 				//Pide los datos de la tabla usuarios ( o los recoje)
 				conjuntoResultados=instruccion.executeQuery(Usuarios_SEL);
 			
@@ -48,7 +49,7 @@ public class UsuariosModel {
 		//En caso de no realizarse con exito devuelve usuarios
 		catch (SQLException exceptionSql){
 				exceptionSql.printStackTrace();
-				return Usuarios;
+				return usuarios;
 		}
 		finally {
 				try{
@@ -56,8 +57,7 @@ public class UsuariosModel {
 					conjuntoResultados.close();
 					//Cierra la instruccion
 					instruccion.close();
-					//Corta la conexion
-					conexion.close();
+					
 			}
 				
 				catch(SQLException exceptionSql){
@@ -66,6 +66,9 @@ public class UsuariosModel {
 		}
 			
 	}
+	
+		
+	
 }
 		
 

@@ -1,30 +1,25 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-
-import java.util.ArrayList;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-
+import Controlador.MainControler;
 import Modelo.UsuariosModel;
 
+
 public class VistaPrincipal extends JPanel {
+	
+	
 	
 	//Definicion de variables.
 	private JPanel Principal;
@@ -47,8 +42,8 @@ public class VistaPrincipal extends JPanel {
 		
 		//Imagen
 		lblAvatar = new JLabel("Avatar");
-		lblAvatar.setIcon(new ImageIcon("C:\\Users\\Gabi\\Desktop\\icono.png"));//imagen
-		lblAvatar.setBounds(22, 11, 141, 140);
+		lblAvatar.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/Images/perfil2.png")));//imagen
+		lblAvatar.setBounds(22, 11, 150, 140);
 		add(lblAvatar);
 		
 		//Etiqueta Usuario
@@ -69,6 +64,11 @@ public class VistaPrincipal extends JPanel {
 		
 		//Boton juegos
 		btnJuegos = new JButton("Juegos>");
+		btnJuegos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 MainControler.getInstance().showJuegos();
+			}
+		});
 		btnJuegos.setBounds(208, 36, 160, 23);
 		add(btnJuegos);
 		

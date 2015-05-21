@@ -8,25 +8,46 @@ import java.sql.SQLException;
 public class ConexionDB {
 	// DATOS DE LA CONEXION
 	static final String CONTROLADOR_MYSQL= "com.mysql.jdbc.Driver";
-	//Conexion
-		private static Connection conexion;// maneja la conexió
+	
 	//DATOS DE LA BBDD
 	private String host;
 	private String bbdd;
 	private String user;
 	private String pass;
 	
+	//DATOS POR DEFECTO
+	private static final String HOST="localhost";
+	private static final String BBDD="gamedb";
+	private static final String USER="root02";
+	private static final String PASS="PROGBD2015";
 	
+	//Conexion
+	private static Connection conexion = null;// maneja la conexió
+	
+	//instancia unica
+	private static ConexionDB instance=null;
 	
 //Declaramos la conexion	
-	public ConexionDB(String HOST,String BBDD,String USER,String PASS) {
+	private ConexionDB(String HOST,String BBDD,String USER,String PASS) {
 		this.host=HOST;
 		this.bbdd=BBDD;
 		this.user=USER;
 		this.pass=PASS;
 		
 	}
-		
+//Implementar Singelton
+	public static ConexionDB getInstance(String HOST,String BBDD,String USER,String PASS){
+		if(instance==null){
+			instance=new ConexionDB(HOST,BBDD,USER,PASS);
+		}
+		return instance;
+	}
+	public static ConexionDB getInstance(){
+		if(instance==null){
+			instance=new ConexionDB(ConexionDB.HOST,ConexionDB.BBDD,ConexionDB.PASS,ConexionDB.USER);
+		}
+		return instance;
+	}
 	public boolean connectDB(){
 		try{
 			
@@ -48,7 +69,7 @@ public class ConexionDB {
 		return true;
 	}
 	//generamos metodo estatico que nos devuelve conexion
-	public static Connection getConexion(){
+	public Connection getConexion(){
 		return conexion;
 	}
 
