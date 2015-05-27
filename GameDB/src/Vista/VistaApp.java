@@ -15,6 +15,9 @@ import Controlador.MainControler;
 
 
 
+
+
+
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.awt.event.ItemListener;
@@ -29,8 +32,7 @@ public class VistaApp extends JFrame {
 	private JMenu mnPrincipal;
 	private JMenu mnJuegos;
 	private JMenu mnPerfil;
-	private VistaPrincipal_1 vPrincipal;
-	
+	private VistaPrincipal vPrincipal;
 	private VistaJuegos vJuegos;
 	private JPanel panel;
 	
@@ -78,7 +80,7 @@ public class VistaApp extends JFrame {
 			contentPane.add(panel, "panel");
 			panel.setLayout(new CardLayout(0, 0));
 			//Añadimos Vista principal
-			vPrincipal= new VistaPrincipal_1();
+			vPrincipal= new VistaPrincipal();
 			panel.add(vPrincipal, "Principal");
 			//Añadimos Vista juegos
 			vJuegos= new VistaJuegos();
@@ -91,13 +93,10 @@ public class VistaApp extends JFrame {
 		
 		
 	}
-	public void showVistaPrincipal_1(ArrayList<String> Usuarios){
-		this.vPrincipal.putUsuarios(Usuarios);
-	}
-	public void showVistaPrincipal_1() {
+	
+	public void showVistaPrincipal(ArrayList<String> Usuarios) {
 		CardLayout c=(CardLayout)this.panel.getLayout();
-		c.show(panel, "Principal");
-		
+		c.show(panel, "Principal");	
 	}
 
 	public void showvJuegos() {

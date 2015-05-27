@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import Controlador.MainControler;
 
 public class UsuariosModel {
@@ -21,6 +22,7 @@ public class UsuariosModel {
 	//UsuariosDB(tendra los nombres de los usuarios a los que queremos acceder.
 	private ArrayList<String>Usuarios;
 	
+	
 	public UsuariosModel() {
 		
 		//Obtenemos la conexion de datos
@@ -30,7 +32,7 @@ public class UsuariosModel {
 		Usuarios=new ArrayList<String>();
 	}
 	public ArrayList<String> getUsuarios(){
-		ArrayList<String> usuarios=new ArrayList<String>();
+		
 		try{
 				//Crea el statement para la conexion( prepara la conexion)
 				instruccion=gameDB.getConexion().createStatement();
@@ -49,7 +51,7 @@ public class UsuariosModel {
 		//En caso de no realizarse con exito devuelve usuarios
 		catch (SQLException exceptionSql){
 				exceptionSql.printStackTrace();
-				return usuarios;
+				return Usuarios;
 		}
 		finally {
 				try{
