@@ -1,31 +1,23 @@
 package Vista;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
-
+import java.awt.LayoutManager;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.AbstractAction;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-
 import Controlador.MainControler;
-
-
-
-
-
-
 import java.awt.CardLayout;
 import java.util.ArrayList;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VistaApp extends JFrame {
+	
 	//DEFINICION DE VARIABLES
 	private JPanel contentPane;
 	private JPanel Perfil;
@@ -43,6 +35,7 @@ public class VistaApp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
+		
 		
 		//INTRODUCIMOS EL MENU
 		JMenuBar menuBar = new JMenuBar();
@@ -75,13 +68,16 @@ public class VistaApp extends JFrame {
 		menuBar.add(mnPerfil);
 		JMenuItem mntmPerfil = new JMenuItem("Perfil");
 		mnPerfil.add(mntmPerfil);
-			
+		
+			//Panel de ventanas 
 			panel = new JPanel();
 			contentPane.add(panel, "panel");
 			panel.setLayout(new CardLayout(0, 0));
+			
 			//Añadimos Vista principal
 			vPrincipal= new VistaPrincipal();
 			panel.add(vPrincipal, "Principal");
+			
 			//Añadimos Vista juegos
 			vJuegos= new VistaJuegos();
 			panel.add(vJuegos, "Juegos");
@@ -90,20 +86,18 @@ public class VistaApp extends JFrame {
 			Perfil = new JPanel();
 			panel.add(Perfil, "Perfil");
 			
-		
-		
+			
+				
 	}
-	
+	//Cargamos los usuarios y mostramos la ventana principal
 	public void showVistaPrincipal(ArrayList<String> Usuarios) {
 		CardLayout c=(CardLayout)this.panel.getLayout();
 		c.show(panel, "Principal");	
 	}
-
+	//Cargamos la vista de juegos
 	public void showvJuegos() {
 		CardLayout c=(CardLayout)this.panel.getLayout();
-		c.show(panel, "Juegos");
-		
-		
+		c.show(panel, "Juegos");	
 	}
 
 

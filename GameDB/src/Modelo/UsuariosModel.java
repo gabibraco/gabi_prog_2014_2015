@@ -1,18 +1,19 @@
 package Modelo;
 
-import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Controlador.MainControler;
+
 
 public class UsuariosModel {
 	
 	//Consulta de nombres de usuarios
 	private final static String Usuarios_SEL="SELECT * FROM Usuarios";
 	private final static String Usuarios_COL="Usuarios";
+	
 	
 	//Conexion
 	ConexionDB gameDB;
@@ -46,31 +47,24 @@ public class UsuariosModel {
 				}
 				//Devolvemos usuarios del Arraylist.
 				return Usuarios;
-			
 		}
 		//En caso de no realizarse con exito devuelve usuarios
 		catch (SQLException exceptionSql){
-				exceptionSql.printStackTrace();
-				return Usuarios;
+				exceptionSql.printStackTrace();	
 		}
 		finally {
 				try{
 					//Cierra la Recopilacion de datos
 					conjuntoResultados.close();
 					//Cierra la instruccion
-					instruccion.close();
-					
+					instruccion.close();	
 			}
-				
 				catch(SQLException exceptionSql){
 					exceptionSql.printStackTrace();
 			}
 		}
-			
+		return Usuarios;	
 	}
-	
-		
-	
 }
 		
 

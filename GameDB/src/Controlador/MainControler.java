@@ -1,8 +1,14 @@
+/***************************************************************************************************************
+ * *************************************************************************************************************
+ * Instalamos el MainController que se encargara, que cualquier accion que se producta en vista va a ser ella la 
+encargada de ejecutarla , ya no va a ser la vista la encargada de interactuar con el usuario y va a saber en todo 
+momento el estado de la aplicacion.******************************************************************************
+*****************************************************************************************************************
+*****************************************************************************************************************/
+
 package Controlador;
 
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import Modelo.ConexionDB;
 import Modelo.UsuariosModel;
 import Vista.VistaApp;
@@ -17,12 +23,13 @@ public class MainControler {
 			//private User usuarioRegistrado = null;
 			//Vistas
 			private VistaApp vApp;
+			//Usuarios
 			private ArrayList<String> Usuarios;
-			private UsuariosModel usuarios;
+			UsuariosModel usuarios;
 	private MainControler() {
-		//ESTABLECIENDO LA CONEXION A LA BBDD y GENERANDO EL OBJETO
+		/*ESTABLECIENDO LA CONEXION A LA BBDD y GENERANDO EL OBJETO (carga la base de datos , el usuario llama al programa
+		,el Main coontrller llama a la BBDD, y este verifica que si existe un usuario muestre la parte visual)*/
 		gamedb =ConexionDB.getInstance("localhost","gamedb","root02","PROGBD2015");
-				
 				//INTENTA CONECTARTE
 				if(gamedb.connectDB()==true){
 					// SI SE CONSIGUE MUESTRA POR PANTALLA ESTO
@@ -46,13 +53,13 @@ public class MainControler {
 	}
 	//Lanzar la vista inicial
 	public void showMain(){
-		//Cargamos los modelos necesarios para esta vista
-		usuarios=new UsuariosModel();
-		Usuarios= usuarios.getUsuarios();
+		//Cargamos los modelos necesarios para esta vista a traves del modeloUsuario
+		usuarios=new UsuariosModel();//llama a usuarios
+		ArrayList<String> Usuarios= usuarios.getUsuarios();//convertimos usuarios en un ARRAYLIST
 		//Lanzamos la ventana Principal
 		vApp = new VistaApp();
-		//Cargamos datos de usuarios
-		 vApp.showVistaPrincipal(Usuarios);
+		//Cargamos datos de usuarios en el JcomboBox
+		vApp.showVistaPrincipal(Usuarios);
 		//Mostramos la vista Principal
 		vApp.setVisible(true);
 	}

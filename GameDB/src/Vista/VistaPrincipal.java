@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import Controlador.MainControler;
 import Modelo.UsuariosModel;
+import javax.swing.JScrollPane;
 
 
 public class VistaPrincipal extends JPanel {
@@ -96,9 +97,10 @@ public class VistaPrincipal extends JPanel {
 		add(btnRegistrarse);
 		
 		//Inserccion de los items en el comboBox por medio del iterador que nos lo rellenara
+		//el JcomboBox con los usuarios que tenemos 
 			Usuarios=new UsuariosModel();
 			Iterator<String>ITusuario=Usuarios.getUsuarios().iterator();
-		
+		//Mientras haya un siguiente
 			while(ITusuario.hasNext()){
 				comboBox.addItem((String)ITusuario.next());
 			}
