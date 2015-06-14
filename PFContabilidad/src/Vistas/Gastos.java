@@ -52,8 +52,8 @@ public class Gastos extends JPanel {
 	private JLabel LabelImporteVariable;
 	private JLabel LabelFijos;
 	private JLabel LabelImporte;
-	private JList list;
-	private DefaultListModel<ObjGastos> ListModel;
+	
+	private DefaultListModel ListModel;
 	private JPanel panelJlist;
 	private JScrollPane scrollPane;
 	private JList list_1;
@@ -83,16 +83,12 @@ public class Gastos extends JPanel {
 		scrollPane.setEnabled(false);
 		panelJlist.add(scrollPane);
 		
-		list_1 = new JList(ListModel); 
-			
-		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
-		
-		
-		
 		
 		
 		ListModel = new DefaultListModel();
+		JList list_1=new JList(ListModel);
+		
+		
 		
 		scrollPane.setViewportView(list_1);
 		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -103,7 +99,7 @@ public class Gastos extends JPanel {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				if((ListModel!=null)&&(list_1.getSelectedIndex()>-1)){
 				//COJO EL ELEMENTO SELECCIONADO
-				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt(list.getSelectedIndex());
+				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt(list_1.getSelectedIndex());
 				CajaNombreFijo.setText(NGasto.getNomGF());
 				CajaImporteFijo.setText(NGasto.getImportGF());
 				CajaTotFijos.setText(NGasto.getTotalGF());
@@ -249,7 +245,7 @@ public class Gastos extends JPanel {
 		
 		
 	}
-	  public void cargaJuegos(ArrayList<ObjGastos> Gasto){
+	  public void cargaGasto(ArrayList<ObjGastos> Gasto){
           
       	Iterator<ObjGastos> it= Gasto.iterator();
           ListModel.removeAllElements();

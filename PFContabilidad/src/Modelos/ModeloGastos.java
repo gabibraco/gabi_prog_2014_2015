@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.Connection;
+import Controller.MainController;
+import Modelos.ConexionDB;
+import Vistas.Gastos;
 public class ModeloGastos {
 	//Consulta de nombres de usuarios
 			private final static String Gastos_SEL="SELECT * FROM gastos";

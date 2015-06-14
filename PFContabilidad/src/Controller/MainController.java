@@ -50,11 +50,9 @@ private MainController() {
 		}
 		//Lanzar la vista inicial
 		public void showMain(){
-			
 			//Cargamos los modelos necesarios para esta vista a traves del modeloUsuario
 				if(usuarios==null)usuarios=new UsuariosModel();//llama a usuarios
 				ArrayList<String> Usuarios= usuarios.getUsuarios();//convertimos usuarios en un ARRAYLIST
-				
 			//Lanzamos la ventana Principal
 				vInicio = new Inicio();
 			//Cargamos datos de usuarios en el JcomboBox
@@ -66,12 +64,9 @@ private MainController() {
 		public void showInicio(){
 			//Cargamos la vista Principal y le enviamos los usuarios 
 				if (this.auth.estaLogado()){
-					
 					vInicio.showVistasLogin(Usuarios);
 					vInicio.showMensaje("Sesión iniciada");
-
 				} else {
-					
 					//aquí mensaje de error por pantalla
 					vInicio.showMensaje("Debes logearte antes");
 				};
