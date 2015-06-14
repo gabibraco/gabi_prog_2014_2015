@@ -69,7 +69,7 @@ public class ConexionDB {
 		return true;
 	}
 	//generamos metodo estatico que nos devuelve conexion
-	public Connection getConexion(){
+	public static Connection getConexion(){
 		return conexion;
 	}
 

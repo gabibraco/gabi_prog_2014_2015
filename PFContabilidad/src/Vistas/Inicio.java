@@ -7,6 +7,7 @@ package Vistas;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -16,8 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Modelos.ModeloGastos;
+import Modelos.ObjGastos;
+import Modelos.ObjetoPerfil;
 import Vistas.Login;
-
 import Controller.MainController;
 
 import java.awt.event.ActionListener;
@@ -40,7 +43,8 @@ public class Inicio extends JFrame {
 	private JMenu mnPerfil;
 	private JMenu mnNewMenu;
 	private JMenuBar menuBar;
-	
+	//Instancia unica		
+	private static Inicio instance = null;
 	
 	
 	public Inicio() {
@@ -64,7 +68,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmLogin = new JMenuItem("Login");
 		mntmLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainController.getInstance().showInicio();
+				MainController.getInstance().showVistasLogin();
 			}
 		});
 		mnNewMenu.add(mntmLogin);
@@ -90,6 +94,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmGastos = new JMenuItem("Gastos");
 		mntmGastos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				MainController.getInstance().showVistasGastos();
 			}
 		});
@@ -135,26 +140,45 @@ public class Inicio extends JFrame {
 		Ingresos = new Ingresos();
 		Ventanas.add(Ingresos, "Ingresos");
 	}
-
+	//Implementar SingleTon
+		public static  Inicio getInstance() {
+				      if(instance == null) {
+				         instance = new Inicio();
+				      }
+				      return instance;
+		}
 	
 	public void showVistasLogin(ArrayList<String> Usuarios) {
 		CardLayout c=(CardLayout)this.Ventanas.getLayout();
 		c.show(Ventanas, "Login");	
 	}
-
 	public void showVistasPerfil() {
 		CardLayout c=(CardLayout)this.Ventanas.getLayout();
 		c.show(Ventanas, "Perfil");	
 	}
-
-	public void showVistasGastos() {
+	public void showVistasGastos(ArrayList<ObjGastos>Gasto) {
 		CardLayout c=(CardLayout)this.Ventanas.getLayout();
 		c.show(Ventanas, "Gastos");	
 	}
-
 	public void showVistasIngresos() {
 		CardLayout c=(CardLayout)this.Ventanas.getLayout();
 		c.show(Ventanas, "Ingresos");
 	}
+	public void showMensaje(String Mensaje){
+		this.textField.setText(Mensaje);
+	}
+
+
+
+	
+
+
+
+	
 	
 }
+
+
+	
+
+

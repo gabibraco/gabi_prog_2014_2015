@@ -1,23 +1,31 @@
 package Vistas;
 
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-
 import java.awt.Color;
-
-import javax.swing.JList;
-import javax.swing.JScrollBar;
-import javax.swing.JLabel;
-
 import java.awt.Font;
+import java.awt.List;
+import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Controller.MainController;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import Modelos.ObjGastos;
+import Modelos.ModeloGastos;
+import javax.swing.AbstractListModel;
 
 public class Gastos extends JPanel {
 	
@@ -30,7 +38,6 @@ public class Gastos extends JPanel {
 	private JTextField CajaTotVariable;
 	private JTextField CajaTotal;
 	private JLabel LabelMes;
-	private JPanel PanelJlist;
 	private JLabel LabelGastosFijos;
 	private JPanel PanelFijos;
 	private JLabel LabelGastosVriables;
@@ -45,9 +52,17 @@ public class Gastos extends JPanel {
 	private JLabel LabelImporteVariable;
 	private JLabel LabelFijos;
 	private JLabel LabelImporte;
-	private JScrollBar scrollBar;
 	private JList list;
-
+	private DefaultListModel<ObjGastos> ListModel;
+	private JPanel panelJlist;
+	private JScrollPane scrollPane;
+	private JList list_1;
+	
+	
+	
+	
+	
+	
 	
 	public Gastos() {
 		setLayout(null);
@@ -58,25 +73,48 @@ public class Gastos extends JPanel {
 		LabelMes.setBounds(10, 27, 99, 20);
 		add(LabelMes);
 		
-		//Panel para el JList y el JScroll
-		PanelJlist = new JPanel();
-		PanelJlist.setBorder(new LineBorder(Color.GRAY, 1, true));
-		PanelJlist.setBounds(10, 47, 113, 140);
-		add(PanelJlist);
-		PanelJlist.setLayout(null);
+		panelJlist = new JPanel();
+		panelJlist.setBorder(new LineBorder(Color.GRAY, 1, true));
+		panelJlist.setBounds(10, 47, 113, 140);
+		add(panelJlist);
 		
-			//Caracteristicas Jlist
-			list = new JList();
-			list.setBorder(new LineBorder(Color.LIGHT_GRAY));
-			list.setBounds(10, 228, 93, -216);
-			PanelJlist.add(list);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 113, 140);
+		scrollPane.setEnabled(false);
+		panelJlist.add(scrollPane);
 		
-			//Caracteristicas JScroll
-			scrollBar = new JScrollBar();
-			scrollBar.setBackground(Color.DARK_GRAY);
-			scrollBar.setForeground(Color.GRAY);
-			scrollBar.setBounds(10, 11, 17, 118);
-			PanelJlist.add(scrollBar);
+		list_1 = new JList(ListModel); 
+			
+		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		
+		
+		
+		
+		
+		ListModel = new DefaultListModel();
+		
+		scrollPane.setViewportView(list_1);
+		list_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list_1.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		list_1.setBounds(10, 228, 93, -216);
+		
+		list_1.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent listSelectionEvent) {
+				if((ListModel!=null)&&(list_1.getSelectedIndex()>-1)){
+				//COJO EL ELEMENTO SELECCIONADO
+				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt(list.getSelectedIndex());
+				CajaNombreFijo.setText(NGasto.getNomGF());
+				CajaImporteFijo.setText(NGasto.getImportGF());
+				CajaTotFijos.setText(NGasto.getTotalGF());
+				CajaNombreVariable.setText(NGasto.getNomGV());
+				CajaImporteVariable.setText(NGasto.getImportGV());
+				CajaTotVariable.setText(NGasto.getTotalGV());
+				CajaTotal.setText(NGasto.getTotalGastos());
+				}
+			}
+		});
+					
 		
 		//Etiqueta Gastos Fijos
 		LabelGastosFijos = new JLabel("Gastos Fijos");
@@ -208,5 +246,19 @@ public class Gastos extends JPanel {
 		BotonIngresos.setBounds(10, 212, 113, 23);
 		add(BotonIngresos);
 		
+		
+		
 	}
+	  public void cargaJuegos(ArrayList<ObjGastos> Gasto){
+          
+      	Iterator<ObjGastos> it= Gasto.iterator();
+          ListModel.removeAllElements();
+          
+	            while(it.hasNext()){
+	            	ObjGastos NGasto=(ObjGastos)it.next();
+	                //Añadimos el objeto Game en el modelo
+	                ListModel.addElement(NGasto);
+		            };
+	       	}
+
 }

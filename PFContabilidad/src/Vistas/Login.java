@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -12,7 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
+import Controller.MainController;
 import Modelos.UsuariosModel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JPanel {
 	private JTextField CajaPasswd;
@@ -64,6 +69,11 @@ public class Login extends JPanel {
 		
 		//Boton Password
 		BotonPasswd = new JButton("Password");
+		BotonPasswd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainController.getInstance().logar();
+			}
+		});
 		BotonPasswd.setBackground(new Color(192, 192, 192));
 		BotonPasswd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		BotonPasswd.setBounds(296, 224, 162, 23);
@@ -79,10 +89,7 @@ public class Login extends JPanel {
 				//Mientras haya un siguiente
 					while(ITusuario.hasNext()){
 						comboBox.addItem((String)ITusuario.next());
-	}
+				}	
+		}		
 }
-
-	
-		
-	}
 	

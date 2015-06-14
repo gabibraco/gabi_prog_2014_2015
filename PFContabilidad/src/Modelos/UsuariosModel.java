@@ -12,7 +12,8 @@ public class UsuariosModel {
 	
 	//Consulta de nombres de usuarios
 	private final static String Usuarios_SEL="SELECT * FROM Usuarios";
-	private final static String Usuarios_COL="Usuarios";
+	private final static String Usuarios_Usuario="Usuarios";
+	
 	
 	
 	//Conexion
@@ -43,7 +44,7 @@ public class UsuariosModel {
 				//Listaremos por pantalla los datos
 				while(conjuntoResultados.next()){
 				//Aqui añadimos el nombre de usuario al ArrayList usuarios
-					Usuarios.add(conjuntoResultados.getString(Usuarios_COL));
+					Usuarios.add(conjuntoResultados.getString(Usuarios_Usuario));
 				}
 				//Devolvemos usuarios del Arraylist.
 				return Usuarios;
