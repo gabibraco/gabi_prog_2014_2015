@@ -30,7 +30,8 @@ public class ModeloGastos {
 			
 	public ModeloGastos() {
 		//Obtenemos la conexion de datos
-				conexion = (Connection) ConexionDB.getInstance();
+				ConexionDB cdb = ConexionDB.getInstance();
+				conexion = ConexionDB.getConexion();
 				//Inicializamos el Array
 				Gasto=new ArrayList<ObjGastos>();
 				

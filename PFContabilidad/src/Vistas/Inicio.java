@@ -94,7 +94,6 @@ public class Inicio extends JFrame {
 		JMenuItem mntmGastos = new JMenuItem("Gastos");
 		mntmGastos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				MainController.getInstance().showVistasGastos();
 			}
 		});
