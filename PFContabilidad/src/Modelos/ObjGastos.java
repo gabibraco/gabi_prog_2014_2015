@@ -2,7 +2,7 @@ package Modelos;
 
 public class ObjGastos {
 	//Definimos nuestro atributos
-			int id=0;
+			
 			private  String Mes="";
 			private  String NomGF="";
 			private  String ImportGF=" ";
@@ -11,8 +11,8 @@ public class ObjGastos {
 			private  String ImportGV="";
 			private  String TotalGV="";
 			private  String TotalGastos="";
-	public ObjGastos(int id,String Mes,String NomGF,String ImportGF,String TotalGF,String NomGV,String ImportGV,String TotalGV,String TotalGastos) {
-		this.id=id;
+	public ObjGastos(String Mes,String NomGF,String ImportGF,String TotalGF,String NomGV,String ImportGV,String TotalGV,String TotalGastos) {
+		
 		this.Mes=Mes;
 		this.NomGF=NomGF;
 		this.ImportGF=ImportGF;
@@ -22,9 +22,7 @@ public class ObjGastos {
 		this.TotalGV=TotalGV;
 		this.TotalGastos=TotalGastos;
 	}
-	public int getid(){
-		return this.id;
-		}
+	
 	public String getMes(){
 	return this.Mes;
 	}
@@ -49,7 +47,7 @@ public class ObjGastos {
 	public String getTotalGastos(){
 		return this.TotalGastos;
 	}
-	public String tooString(){
+	public String toString(){
 		return this.Mes;
 	}
 }

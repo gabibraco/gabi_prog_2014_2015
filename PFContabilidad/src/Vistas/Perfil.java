@@ -13,7 +13,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import Controller.MainController;
+import Controller.MainControler;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -115,7 +115,7 @@ public class Perfil extends JPanel {
 		JButton BotonGastos = new JButton("Gastos");
 		BotonGastos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainController.getInstance().showVistasGastos();
+				MainControler.getInstance().showvGasto();
 			}
 		});
 		BotonGastos.setBounds(249, 23, 191, 23);
@@ -125,7 +125,7 @@ public class Perfil extends JPanel {
 		JButton BotonIngresos = new JButton("Ingresos");
 		BotonIngresos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainController.getInstance().showVistasIngresos();
+				
 			}
 		});
 		BotonIngresos.setBounds(249, 62, 191, 23);

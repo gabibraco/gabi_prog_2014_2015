@@ -6,6 +6,7 @@ package Vistas;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,7 +22,7 @@ import Modelos.ModeloGastos;
 import Modelos.ObjGastos;
 import Modelos.ObjetoPerfil;
 import Vistas.Login;
-import Controller.MainController;
+import Controller.MainControler;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,14 +30,11 @@ import java.awt.event.ActionEvent;
 
 public class Inicio extends JFrame {
 	
+	
 	//Definicion de variables
-	private JPanel contentPane;
+	public static JPanel contentPane;
 	private JTextField textField;
-	private Login Login;
-	private Perfil Perfil;
-	private Gastos Gastos;
-	private Ingresos Ingresos;
-	private JPanel Ventanas;
+	public static JPanel Ventanas;
 	private JMenuItem mntmIngresos;
 	private JMenu mnIngresos;
 	private JMenu mnGatos;
@@ -45,7 +43,10 @@ public class Inicio extends JFrame {
 	private JMenuBar menuBar;
 	//Instancia unica		
 	private static Inicio instance = null;
-	
+	private Gastos vGasto;
+	private Login vLogin;
+	private Perfil vPerfil;
+	private Ingresos vIngresos;
 	
 	public Inicio() {
 		//Caracteristicas de nuestro Contenedor
@@ -68,7 +69,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmLogin = new JMenuItem("Login");
 		mntmLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainController.getInstance().showVistasLogin();
+				MainControler.getInstance().showvLogin();
 			}
 		});
 		mnNewMenu.add(mntmLogin);
@@ -81,7 +82,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmPerfil = new JMenuItem("Perfil");
 		mntmPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainController.getInstance().showVistasPerfil();
+				
 			}
 		});
 		mnPerfil.add(mntmPerfil);
@@ -94,7 +95,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmGastos = new JMenuItem("Gastos");
 		mntmGastos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainController.getInstance().showVistasGastos();
+				MainControler.getInstance().showvGasto();
 			}
 		});
 		mnGatos.add(mntmGastos);
@@ -107,7 +108,7 @@ public class Inicio extends JFrame {
 		mntmIngresos = new JMenuItem("Ingresos");
 		mntmIngresos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainController.getInstance().showVistasIngresos();
+				MainControler.getInstance().showvIngresos();
 			}
 		});
 		mnIngresos.add(mntmIngresos);
@@ -124,20 +125,20 @@ public class Inicio extends JFrame {
 		Ventanas.setLayout(new CardLayout(0, 0));
 		
 		//Ventana Login
-		Login = new Login();
-		Ventanas.add(Login, "Login");
+		vLogin = new Login();
+		Ventanas.add(vLogin, "Login");
 		
 		//Ventana Perfil		
-		Perfil = new Perfil();
-		Ventanas.add(Perfil, "Perfil");
+		vPerfil = new Perfil();
+		Ventanas.add(vPerfil, "Perfil");
 		
 		//Ventana Gastos
-		Gastos = new Gastos();
-		Ventanas.add(Gastos, "Gastos");
+		vGasto = new Gastos();
+		Ventanas.add(vGasto, "Gastos");
 		
 		//Ventana Ingresos
-		Ingresos = new Ingresos();
-		Ventanas.add(Ingresos, "Ingresos");
+		vIngresos = new Ingresos();
+		Ventanas.add(vIngresos, "Ingresos");
 	}
 	//Implementar SingleTon
 		public static  Inicio getInstance() {
@@ -147,25 +148,42 @@ public class Inicio extends JFrame {
 				      return instance;
 		}
 	
-	public void showVistasLogin(ArrayList<String> Usuarios) {
-		CardLayout c=(CardLayout)this.Ventanas.getLayout();
-		c.show(Ventanas, "Login");	
-	}
-	public void showVistasPerfil() {
-		CardLayout c=(CardLayout)this.Ventanas.getLayout();
-		c.show(Ventanas, "Perfil");	
-	}
-	public void showVistasGastos(ArrayList<ObjGastos>Gasto) {
-		CardLayout c=(CardLayout)this.Ventanas.getLayout();
-		c.show(Ventanas, "Gastos");	
-	}
-	public void showVistasIngresos() {
-		CardLayout c=(CardLayout)this.Ventanas.getLayout();
-		c.show(Ventanas, "Ingresos");
-	}
+		public void showvLogin(Iterator Objetoiterador) {
+			//cargamos el panel principal
+			//llamada a metodo para cargar los usuarios
+			vLogin.cargaUsuarios(Objetoiterador);	
+			
+			vLogin.setVisible(true);
+			vGasto.setVisible(false);
+			vIngresos.setVisible(false);
+			
+
+		}
+
+		public void showvGasto(ArrayList Gasto) {
+	
+			//cargamos el panel de Juegos
+			vGasto.cargarGastos(Gasto);	
+			vGasto.setVisible(true);
+			vLogin.setVisible(false);
+			vIngresos.setVisible(false);
+			
+		}
+		public void showvIngresos(ArrayList Ingreso) {
+			
+			//cargamos el panel de Juegos
+			vIngresos.cargarIngresos(Ingreso);	
+			vIngresos.setVisible(true);
+			vLogin.setVisible(false);
+			vGasto.setVisible(false);
+			
+		}
+		
+		
 	public void showMensaje(String Mensaje){
 		this.textField.setText(Mensaje);
 	}
+	
 
 
 

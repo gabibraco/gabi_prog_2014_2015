@@ -49,5 +49,8 @@ public ObjIngresos(int id,String Mes,String NomIF,String ImportIF,String TotalIF
 	public String getTotalIngresos(){
 		return this.TotalIngresos;
 	}
+	public String toString(){
+		return this.Mes;
+	}
 }
 

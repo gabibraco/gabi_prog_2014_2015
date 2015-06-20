@@ -13,21 +13,26 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
-import Controller.MainController;
+import Controller.MainControler;
 import Modelos.UsuariosModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Login extends JPanel {
+	
 	private JTextField CajaPasswd;
 	private JLabel LblTitulo;
 	private JEditorPane JEditorAviso;
 	private JLabel lblNombre;
 	private JLabel LblPassword;
 	private JButton BotonPasswd;
-	Modelos.UsuariosModel Usuarios;
+	
 	JComboBox<String> comboBox ;
+	
+	
+	
+	
 	public Login() {
 		setLayout(null);
 		//ETIQUETA TITULO
@@ -71,7 +76,7 @@ public class Login extends JPanel {
 		BotonPasswd = new JButton("Password");
 		BotonPasswd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainController.getInstance().logar();
+				MainControler.getInstance().logar();
 			}
 		});
 		BotonPasswd.setBackground(new Color(192, 192, 192));
@@ -82,14 +87,14 @@ public class Login extends JPanel {
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 167, 162, 20);
 		add(comboBox);
-		//Inserccion de los items en el comboBox por medio del iterador que nos lo rellenara
-				//el JcomboBox con los usuarios que tenemos 
-					Usuarios=new UsuariosModel();
-					Iterator<String>ITusuario=Usuarios.getUsuarios().iterator();
-				//Mientras haya un siguiente
-					while(ITusuario.hasNext()){
-						comboBox.addItem((String)ITusuario.next());
-				}	
-		}		
+		
+}	
+		
+	public void cargaUsuarios(Iterator Objetoiterador){	
+		comboBox.removeAllItems();
+		while(Objetoiterador.hasNext()){
+			comboBox.addItem((String)Objetoiterador.next());
+		}
+	}
 }
 	

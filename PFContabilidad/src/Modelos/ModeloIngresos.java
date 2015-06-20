@@ -1,5 +1,6 @@
 package Modelos;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 public class ModeloIngresos {
 	//Consulta de nombres de usuarios
-	private final static String Ingresos_SEL="SELECT * FROM Ingresos";
+	private final static String Ingresos_SEL="SELECT * FROM ingresos";
 	private final static String ID_COL="id";
 	private final static String Mes_COL="Mes";
 	private final static String NomIF_COL="NomIF";
@@ -19,23 +20,25 @@ public class ModeloIngresos {
 	private final static String TotalIngresos_COL="TotalIngresos";
 	
 //Conexion
-	private ConexionDB gameDB=null;
-	private Statement instruccion=null;
-	private ResultSet conjuntoResultados=null;	
+	private Connection conexion=null;
+	Statement instruccion=null;
+	ResultSet conjuntoResultados=null;	
 	
 //Declaramos nuestro ArrayList
 	private ArrayList<ObjIngresos> Ingreso=null;
 	
 	public ModeloIngresos() {
 		//Obtenemos la conexion de datos
-				gameDB=ConexionDB.getInstance();
+			ConexionDB cdb = ConexionDB.getInstance();
+			conexion = ConexionDB.getConexion();
 				//Inicializamos el Array
 				Ingreso=new ArrayList<ObjIngresos>();
 	}
+	
 	public ArrayList getIngreso(){
 		try{
 			//Crea el statement para la conexion( prepara la conexion)
-			instruccion=gameDB.getConexion().createStatement();
+			instruccion=this.conexion.createStatement();
 			//Pide los datos de la tabla usuarios ( o los recoje)
 			conjuntoResultados=instruccion.executeQuery(Ingresos_SEL);
 			Ingreso.clear();
