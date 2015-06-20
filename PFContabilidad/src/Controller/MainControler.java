@@ -125,8 +125,16 @@ public class MainControler {
 		
 		//metodo al que llamamos para hacer visible el panel VistaPrin
 		public void showvLogin(){
+			
 			//en el metodo showVistaPrin,lanzamos metodo de objetovistaapp
 			vInicio.showvLogin(CargarUsuarios());
+			if (this.auth.estaLogado()){
+			
+			vInicio.showMensaje("Sesión iniciada");
+			} else {
+				//aquí mensaje de error por pantalla
+				vInicio.showMensaje("Debes logearte antes");
+			};
 		}
 		
 		//metodo al que llamamos para hacer visible el panel juegos

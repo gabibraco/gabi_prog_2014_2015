@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.awt.Font;
 
 public class Ingresos extends JPanel {
 	//Definicion de Variables
@@ -82,6 +83,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja Tipo de Ingreso
 				CajaTipoIngreso = new JTextField();
+				CajaTipoIngreso.setEditable(false);
 				CajaTipoIngreso.setBounds(10, 42, 104, 20);
 				PanelIngFijos.add(CajaTipoIngreso);
 				CajaTipoIngreso.setColumns(10);
@@ -93,6 +95,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja de Importe Fijo
 				CajaIngresoImporte = new JTextField();
+				CajaIngresoImporte.setEditable(false);
 				CajaIngresoImporte.setColumns(10);
 				CajaIngresoImporte.setBounds(10, 106, 104, 20);
 				PanelIngFijos.add(CajaIngresoImporte);
@@ -116,6 +119,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja Concepto Variable
 				CajaTipoVariable = new JTextField();
+				CajaTipoVariable.setEditable(false);
 				CajaTipoVariable.setColumns(10);
 				CajaTipoVariable.setBounds(10, 42, 104, 20);
 				PanelIngresosVariables.add(CajaTipoVariable);
@@ -127,6 +131,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja Importe Variable
 				CajaImporteVariable = new JTextField();
+				CajaImporteVariable.setEditable(false);
 				CajaImporteVariable.setColumns(10);
 				CajaImporteVariable.setBounds(10, 104, 104, 20);
 				PanelIngresosVariables.add(CajaImporteVariable);
@@ -150,6 +155,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja de total Ingrasos Fijos 
 				CajaTotIngFijos = new JTextField();
+				CajaTotIngFijos.setEditable(false);
 				CajaTotIngFijos.setBounds(10, 36, 68, 20);
 				PanelIngresosTotales.add(CajaTotIngFijos);
 				CajaTotIngFijos.setColumns(10);
@@ -161,6 +167,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja Ingresos Totales Variables 
 				CajaTotIngVariables = new JTextField();
+				CajaTotIngVariables.setEditable(false);
 				CajaTotIngVariables.setColumns(10);
 				CajaTotIngVariables.setBounds(88, 36, 73, 20);
 				PanelIngresosTotales.add(CajaTotIngVariables);
@@ -172,6 +179,7 @@ public class Ingresos extends JPanel {
 			
 				//Caja de total Ingresos 
 				CajaTotIngresos = new JTextField();
+				CajaTotIngresos.setEditable(false);
 				CajaTotIngresos.setColumns(10);
 				CajaTotIngresos.setBounds(185, 36, 73, 20);
 				PanelIngresosTotales.add(CajaTotIngresos);
@@ -191,6 +199,8 @@ public class Ingresos extends JPanel {
 				//permite mayor control sobre el JList
 				ListModel = new DefaultListModel();
 				JList list = new JList(ListModel) ;
+				list.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+				list.setBackground(Color.LIGHT_GRAY);
 				list.setValueIsAdjusting(true);
 				list.setVisibleRowCount(6);
 				
@@ -219,8 +229,16 @@ public class Ingresos extends JPanel {
 					MainControler.getInstance().showvGasto();
 				}
 			});
-			BotonGastos.setBounds(10, 216, 107, 23);
+			BotonGastos.setBounds(10, 197, 113, 23);
 			add(BotonGastos);
+			
+			JButton BotonSalvar = new JButton("Salvar");
+			BotonSalvar.setBounds(10, 231, 113, 23);
+			add(BotonSalvar);
+			
+			JButton BotonEditar = new JButton("Editar");
+			BotonEditar.setBounds(10, 265, 113, 23);
+			add(BotonEditar);
 
 	}
 		public void cargarIngresos(ArrayList<ObjIngresos>  ingresos){
@@ -234,5 +252,4 @@ public class Ingresos extends JPanel {
 	                ListModel.addElement(NIngreso);
 		            };
 	       	}	
-
 }

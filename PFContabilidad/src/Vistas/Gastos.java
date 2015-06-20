@@ -59,6 +59,8 @@ public class Gastos extends JPanel {
 	private DefaultListModel ListModel;
 	private JList list;
 	private JTextField CajaMes;
+	private JButton BotonSalvar;
+	private JButton BotonEditar;
 	
 	
 	
@@ -72,9 +74,6 @@ public class Gastos extends JPanel {
 		LabelMes.setFont(new Font("Tahoma", Font.PLAIN, 12)); 
 		LabelMes.setBounds(10, 27, 99, 20);
 		add(LabelMes);
-		
-		ListModel = new DefaultListModel();
-		
 		
 		//Etiqueta Gastos Fijos
 		LabelGastosFijos = new JLabel(); 
@@ -99,6 +98,7 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Fijos
 			CajaNombreFijo = new JTextField();
+			CajaNombreFijo.setEditable(false);
 			CajaNombreFijo.setBounds(10, 43, 118, 20);
 			PanelFijos.add(CajaNombreFijo);
 			CajaNombreFijo.setColumns(10);
@@ -112,6 +112,7 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Fijos (Importe)
 			CajaImporteFijo = new JTextField();
+			CajaImporteFijo.setEditable(false);
 			CajaImporteFijo.setColumns(10);
 			CajaImporteFijo.setBounds(10, 102, 118, 20);
 			PanelFijos.add(CajaImporteFijo);
@@ -139,6 +140,7 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Variables(Nombre)
 			CajaNombreVariable = new JTextField();
+			CajaNombreVariable.setEditable(false);
 			CajaNombreVariable.setColumns(10);
 			CajaNombreVariable.setBounds(10, 43, 118, 20);
 			panel.add(CajaNombreVariable);
@@ -152,6 +154,7 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Variables(Importe)
 			CajaImporteVariable = new JTextField();
+			CajaImporteVariable.setEditable(false);
 			CajaImporteVariable.setColumns(10);
 			CajaImporteVariable.setBounds(10, 102, 118, 20);
 			panel.add(CajaImporteVariable);
@@ -165,7 +168,7 @@ public class Gastos extends JPanel {
 			//Panel Gastos Totales
 			PanelTotales = new JPanel();
 			PanelTotales.setBorder(new LineBorder(Color.GRAY, 1, true));
-			PanelTotales.setBounds(133, 212, 296, 63);
+			PanelTotales.setBounds(133, 212, 296, 73);
 			add(PanelTotales);
 			PanelTotales.setLayout(null);
 		
@@ -177,6 +180,7 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Fijos (Importe)
 			CajaTotFijos = new JTextField();
+			CajaTotFijos.setEditable(false);
 			CajaTotFijos.setBounds(10, 36, 86, 20);
 			PanelTotales.add(CajaTotFijos);
 			CajaTotFijos.setColumns(10);
@@ -189,6 +193,7 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Variables (Importe)
 			CajaTotVariable = new JTextField();
+			CajaTotVariable.setEditable(false);
 			CajaTotVariable.setColumns(10);
 			CajaTotVariable.setBounds(105, 36, 86, 20);
 			PanelTotales.add(CajaTotVariable);
@@ -201,6 +206,7 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Gastos(Importe)
 			CajaTotal = new JTextField();
+			CajaTotal.setEditable(false);
 			CajaTotal.setColumns(10);
 			CajaTotal.setBounds(201, 36, 86, 20);
 			PanelTotales.add(CajaTotal);
@@ -210,9 +216,11 @@ public class Gastos extends JPanel {
 		BotonIngresos.setText("Ingresos>");
 		BotonIngresos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainControler.getInstance().showvIngresos();
+				
 			}
 		});
-		BotonIngresos.setBounds(10, 212, 113, 23);
+		BotonIngresos.setBounds(10, 198, 113, 23);
 		add(BotonIngresos);
 		
 		JPanel panelJList = new JPanel();
@@ -230,18 +238,27 @@ public class Gastos extends JPanel {
 		//permite mayor control sobre el JList
 		ListModel = new DefaultListModel();
 		JList list = new JList(ListModel) ;
+		list.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		list.setBackground(Color.LIGHT_GRAY);
 		list.setValueIsAdjusting(true);
 		list.setVisibleRowCount(6);
 		
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		BotonSalvar = new JButton("Salvar");
+		BotonSalvar.setBounds(10, 228, 113, 23);
+		add(BotonSalvar);
+		
+		BotonEditar = new JButton("Editar");
+		BotonEditar.setBounds(10, 262, 113, 23);
+		add(BotonEditar);
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
 				if((ListModel!=null)&&(list.getSelectedIndex()>-1)){
 				//COJO EL ELEMENTO SELECCIONADO
-				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt(list.getSelectedIndex());
-				
-				
+				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt
+				(list.getSelectedIndex());
 				CajaNombreFijo.setText(NGasto.getNomGF());
 				CajaImporteFijo.setText(NGasto.getImportGF());
 				CajaTotFijos.setText(NGasto.getTotalGF());
@@ -251,15 +268,12 @@ public class Gastos extends JPanel {
 				CajaTotal.setText(NGasto.getTotalGastos());	
 				}
 			}
-		});
-		
-		         
-		}
+		});		         
+}
 		
 	 //Al haber definido el modelo, los datos sobre el JList se realizará sobre el Modelo,
     //no sobre el JList
     public void cargarGastos(ArrayList<ObjGastos>  gastos){
-      
     	Iterator<ObjGastos> it2= gastos.iterator();
         ListModel.removeAllElements();
         
