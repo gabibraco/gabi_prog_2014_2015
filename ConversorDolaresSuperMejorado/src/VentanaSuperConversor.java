@@ -161,11 +161,13 @@ public class VentanaSuperConversor extends JFrame {
 					caja2.setText("");
 					caja3.setText("Los euros deben estar entre 0 y 500");
 							
-						}
 					}
+				}
 				catch(Exception e){	
 					caja2.setText("");
-					caja3.setText("Se ha prodcucido un error de conversion");}
+					caja3.setText("Se ha prodcucido un error de conversion");
+					
+				}
 				
 			}
 		});

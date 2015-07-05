@@ -1,3 +1,4 @@
+/*Ventana de Ingresos*/
 package Vistas;
 
 import javax.swing.DefaultListModel;
@@ -38,7 +39,6 @@ public class Ingresos extends JPanel {
 	public JTextField CajaTotIngresos;
 	private JLabel LabelMesIng;
 	private JList list;
-	
 	private JLabel LabelIngresosFijos;
 	private JLabel LabelTipoIngreso;
 	private JLabel LabelImporteFijo;
@@ -59,11 +59,6 @@ public class Ingresos extends JPanel {
 			LabelMesIng.setBounds(10, 22, 124, 14);
 			add(LabelMesIng);
 			
-			
-			
-				
-				
-				
 			//Etiqueta de Ingresos Fijos 
 			LabelIngresosFijos = new JLabel("Ingresos Fijos");
 			LabelIngresosFijos.setBounds(157, 22, 124, 14);
@@ -184,21 +179,22 @@ public class Ingresos extends JPanel {
 				CajaTotIngresos.setBounds(185, 36, 73, 20);
 				PanelIngresosTotales.add(CajaTotIngresos);
 				
+				//Panel JList
 				JPanel panelJList = new JPanel();
 				panelJList.setBounds(10, 47, 113, 140);
 				panelJList.setLayout(null);
 				add(panelJList);
-
+				
+				//ScrollPane
 				JScrollPane scrollPane = new JScrollPane();
 				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 				scrollPane.setBounds(0, 0, 113, 140);
 				panelJList.add(scrollPane);
 				
-				
-				
 				//permite mayor control sobre el JList
 				ListModel = new DefaultListModel();
-				JList list = new JList(ListModel) ;
+				list = new JList(ListModel) ;
+				
 				list.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 				list.setBackground(Color.LIGHT_GRAY);
 				list.setValueIsAdjusting(true);
@@ -231,18 +227,18 @@ public class Ingresos extends JPanel {
 			});
 			BotonGastos.setBounds(10, 197, 113, 23);
 			add(BotonGastos);
-			
+			//Boton Salvar
 			JButton BotonSalvar = new JButton("Salvar");
 			BotonSalvar.setBounds(10, 231, 113, 23);
 			add(BotonSalvar);
-			
+			//Boton Editar 
 			JButton BotonEditar = new JButton("Editar");
 			BotonEditar.setBounds(10, 265, 113, 23);
 			add(BotonEditar);
 
 	}
-		public void cargarIngresos(ArrayList<ObjIngresos>  ingresos){
-		      
+		//Metodo para recojer los Ingresos del Array a traves del Iterator y las pasamos al ListModel
+		public void cargarIngresos(ArrayList<ObjIngresos>  ingresos){ 
 	    	Iterator<ObjIngresos> it3= ingresos.iterator();
 	        ListModel.removeAllElements();
 	        
@@ -250,6 +246,6 @@ public class Ingresos extends JPanel {
 	            	ObjIngresos NIngreso=(ObjIngresos)it3.next();
 	                //Añadimos el objeto Game en el modelo
 	                ListModel.addElement(NIngreso);
-		            };
-	       	}	
+		        };
+		}	
 }

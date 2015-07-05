@@ -1,4 +1,4 @@
-package Vista;
+package Vistas;
 
 import java.util.Iterator;
 
@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-import Controlador.MainControler;
 import Controlador.MainControler;
 import Modelo.UsuariosModel;
 
@@ -65,7 +64,7 @@ public class VistaPrincipal extends JPanel {
 				JLabel lblNewLabel = new JLabel("New label");
 				lblNewLabel.setBounds(6, 6, 226, 225);
 				add(lblNewLabel);
-				
+				lblNewLabel.setIcon(new ImageIcon(VistaPrincipal.class.getResource("/images/fotocarnet.jpeg")));
 								
 						//botones
 						

@@ -1,3 +1,4 @@
+/*Nuestra Ventana Login que sera la primera que se mostrara para el usuario*/
 package Vistas;
 
 import java.awt.Color;
@@ -29,9 +30,6 @@ public class Login extends JPanel {
 	private JButton BotonPasswd;
 	
 	JComboBox<String> comboBox ;
-	
-	
-	
 	
 	public Login() {
 		setLayout(null);
@@ -83,13 +81,13 @@ public class Login extends JPanel {
 		BotonPasswd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		BotonPasswd.setBounds(296, 224, 162, 23);
 		add(BotonPasswd);
-		
+		//Jcombobox
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 167, 162, 20);
 		add(comboBox);
 		
 }	
-		
+	//Metodo para recojer los usuarios a traves de un iterator.
 	public void cargaUsuarios(Iterator Objetoiterador){	
 		comboBox.removeAllItems();
 		while(Objetoiterador.hasNext()){

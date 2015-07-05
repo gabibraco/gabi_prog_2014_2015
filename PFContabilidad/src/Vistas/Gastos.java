@@ -1,3 +1,7 @@
+/*Nuestra Ventana de tipo CardLayout Gastos */
+
+
+
 package Vistas;
 
 import java.awt.Color;
@@ -29,6 +33,8 @@ import Modelos.UsuariosModel;
 
 import javax.swing.AbstractListModel;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class Gastos extends JPanel {
 	
@@ -55,7 +61,6 @@ public class Gastos extends JPanel {
 	private JLabel LabelImporteVariable;
 	private JLabel LabelFijos;
 	private JLabel LabelImporte;
-	
 	private DefaultListModel ListModel;
 	private JList list;
 	private JTextField CajaMes;
@@ -98,7 +103,6 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Fijos
 			CajaNombreFijo = new JTextField();
-			CajaNombreFijo.setEditable(false);
 			CajaNombreFijo.setBounds(10, 43, 118, 20);
 			PanelFijos.add(CajaNombreFijo);
 			CajaNombreFijo.setColumns(10);
@@ -112,7 +116,6 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Fijos (Importe)
 			CajaImporteFijo = new JTextField();
-			CajaImporteFijo.setEditable(false);
 			CajaImporteFijo.setColumns(10);
 			CajaImporteFijo.setBounds(10, 102, 118, 20);
 			PanelFijos.add(CajaImporteFijo);
@@ -140,7 +143,6 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Variables(Nombre)
 			CajaNombreVariable = new JTextField();
-			CajaNombreVariable.setEditable(false);
 			CajaNombreVariable.setColumns(10);
 			CajaNombreVariable.setBounds(10, 43, 118, 20);
 			panel.add(CajaNombreVariable);
@@ -154,7 +156,6 @@ public class Gastos extends JPanel {
 		
 			//Caja Gastos Variables(Importe)
 			CajaImporteVariable = new JTextField();
-			CajaImporteVariable.setEditable(false);
 			CajaImporteVariable.setColumns(10);
 			CajaImporteVariable.setBounds(10, 102, 118, 20);
 			panel.add(CajaImporteVariable);
@@ -180,7 +181,6 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Fijos (Importe)
 			CajaTotFijos = new JTextField();
-			CajaTotFijos.setEditable(false);
 			CajaTotFijos.setBounds(10, 36, 86, 20);
 			PanelTotales.add(CajaTotFijos);
 			CajaTotFijos.setColumns(10);
@@ -193,7 +193,6 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Variables (Importe)
 			CajaTotVariable = new JTextField();
-			CajaTotVariable.setEditable(false);
 			CajaTotVariable.setColumns(10);
 			CajaTotVariable.setBounds(105, 36, 86, 20);
 			PanelTotales.add(CajaTotVariable);
@@ -206,7 +205,6 @@ public class Gastos extends JPanel {
 		
 			//Caja de Totales Gastos(Importe)
 			CajaTotal = new JTextField();
-			CajaTotal.setEditable(false);
 			CajaTotal.setColumns(10);
 			CajaTotal.setBounds(201, 36, 86, 20);
 			PanelTotales.add(CajaTotal);
@@ -222,40 +220,72 @@ public class Gastos extends JPanel {
 		});
 		BotonIngresos.setBounds(10, 198, 113, 23);
 		add(BotonIngresos);
+		/*Boton Salvar que contiene un Listener donde se recojen las modificaciones realizadas en los diferentes
+		 * Textfields y los datos que tenemos en la lista 
+		 */
+		BotonSalvar = new JButton("Salvar");
+		BotonSalvar.setBounds(10, 228, 113, 23);
+		add(BotonSalvar);
+		BotonSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt(list.getSelectedIndex());
+				ObjGastos update = new ObjGastos (
+												  NGasto.getid(),
+												  NGasto.getMes(),
+												  CajaNombreFijo.getText(),
+												  CajaImporteFijo.getText(),
+												  CajaTotFijos.getText(),
+												  CajaNombreVariable.getText(),
+												  CajaImporteVariable.getText(),
+												  CajaTotVariable.getText(),
+												  CajaTotal.getText());
+				
+				MainControler.getInstance().updateGasto(update);
+			}
+		});
 		
+		/*Boton Editar con un Listener que nos permitira escribir en los diferentes Textfields*/
+		BotonEditar = new JButton("Editar");
+		BotonEditar.setBounds(10, 262, 113, 23);
+		add(BotonEditar);
+		BotonEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				   CajaNombreFijo.setEnabled(true);
+		           CajaImporteFijo.setEnabled(true);
+		           CajaNombreVariable.setEnabled(true);
+		           CajaImporteVariable.setEnabled(true);
+		           CajaTotFijos.setEnabled(true);
+		           CajaTotVariable.setEnabled(true);
+		           CajaTotal.setEnabled(true);
+			}
+		});
+		
+		//Panel JList
 		JPanel panelJList = new JPanel();
 		panelJList.setBounds(10, 47, 113, 140);
 		panelJList.setLayout(null);
 		add(panelJList);
-
+		//Scroll Panel
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(0, 0, 113, 140);
 		panelJList.add(scrollPane);
 		
-		
-		
 		//permite mayor control sobre el JList
 		ListModel = new DefaultListModel();
-		JList list = new JList(ListModel) ;
+		list = new JList(ListModel) ;
+		
+		//Nuestra Lista(Recopilamos los datos del Array de objetos que tenemos.
 		list.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
 		list.setBackground(Color.LIGHT_GRAY);
 		list.setValueIsAdjusting(true);
 		list.setVisibleRowCount(6);
-		
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		
-		BotonSalvar = new JButton("Salvar");
-		BotonSalvar.setBounds(10, 228, 113, 23);
-		add(BotonSalvar);
-		
-		BotonEditar = new JButton("Editar");
-		BotonEditar.setBounds(10, 262, 113, 23);
-		add(BotonEditar);
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent listSelectionEvent) {
-				if((ListModel!=null)&&(list.getSelectedIndex()>-1)){
+				if((ListModel!=null)&&(list!=null)){
+						if(list.getSelectedIndex()>0){		
 				//COJO EL ELEMENTO SELECCIONADO
 				ObjGastos NGasto=(ObjGastos)ListModel.getElementAt
 				(list.getSelectedIndex());
@@ -266,13 +296,13 @@ public class Gastos extends JPanel {
 				CajaImporteVariable.setText(NGasto.getImportGV());
 				CajaTotVariable.setText(NGasto.getTotalGV());
 				CajaTotal.setText(NGasto.getTotalGastos());	
-				}
+				}}
 			}
 		});		         
 }
 		
-	 //Al haber definido el modelo, los datos sobre el JList se realizará sobre el Modelo,
-    //no sobre el JList
+	 /*Al haber definido el modelo, los datos sobre el JList se realizará sobre el Modelo,
+    no sobre el JList, recojemos los datos del array a traves de iterator y los pasamos al listmodel*/
     public void cargarGastos(ArrayList<ObjGastos>  gastos){
     	Iterator<ObjGastos> it2= gastos.iterator();
         ListModel.removeAllElements();
@@ -282,6 +312,14 @@ public class Gastos extends JPanel {
                 //Añadimos el objeto Game en el modelo
                 ListModel.addElement(NGasto);
 	            };
+	//Otra Accion que realiamos es deshabilitar los textFields
+	           CajaNombreFijo.setEnabled(false);
+	           CajaImporteFijo.setEnabled(false);
+	           CajaTotFijos.setEnabled(false);
+	           CajaNombreVariable.setEnabled(false);
+	           CajaImporteVariable.setEnabled(false);
+	           CajaTotVariable.setEnabled(false);
+	           CajaTotal.setEnabled(false);
        	}
 	}
 	  

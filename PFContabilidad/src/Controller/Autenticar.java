@@ -1,4 +1,5 @@
 package Controller;
+/*Creamos la Clase autenticar que nos permitira devolver un false o true dependiendo si estas Logado*/
 
 public class Autenticar {
 	private boolean isAuth=false;

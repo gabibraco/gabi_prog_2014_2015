@@ -1,3 +1,4 @@
+/*Define el modelo perfil*/
 package Modelos;
 
 import java.sql.ResultSet;

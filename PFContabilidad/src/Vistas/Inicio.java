@@ -82,7 +82,7 @@ public class Inicio extends JFrame {
 		JMenuItem mntmPerfil = new JMenuItem("Perfil");
 		mntmPerfil.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				MainControler.getInstance().showvPerfil();	
 			}
 		});
 		mnPerfil.add(mntmPerfil);
@@ -140,49 +140,59 @@ public class Inicio extends JFrame {
 		vIngresos = new Ingresos();
 		Ventanas.add(vIngresos, "Ingresos");
 	}
+	
 	//Implementar SingleTon
 		public static  Inicio getInstance() {
-				      if(instance == null) {
-				         instance = new Inicio();
-				      }
-				      return instance;
-		}
-	
+			if(instance == null) {
+			   instance = new Inicio();
+			}
+			return instance;
+			}
+		
+		//cargamos el panel principal
 		public void showvLogin(Iterator Objetoiterador) {
-			//cargamos el panel principal
 			//llamada a metodo para cargar los usuarios
 			vLogin.cargaUsuarios(Objetoiterador);	
-			
 			vLogin.setVisible(true);
 			vGasto.setVisible(false);
 			vIngresos.setVisible(false);
-			
-
+			vPerfil.setVisible(false);
 		}
-
+		
+		//Cargamos Panel Gasto
 		public void showvGasto(ArrayList Gasto) {
-	
-			//cargamos el panel de Juegos
+			//LLamada a metodo para cargar gastos
 			vGasto.cargarGastos(Gasto);	
 			vGasto.setVisible(true);
 			vLogin.setVisible(false);
 			vIngresos.setVisible(false);
-			
+			vPerfil.setVisible(false);
 		}
+		
+		//Cargamos panel Ingresos
 		public void showvIngresos(ArrayList Ingreso) {
-			
-			//cargamos el panel de Juegos
+			//LLamada a metodo para cargar Ingresos
 			vIngresos.cargarIngresos(Ingreso);	
 			vIngresos.setVisible(true);
 			vLogin.setVisible(false);
 			vGasto.setVisible(false);
-			
+			vPerfil.setVisible(false);
 		}
 		
+		//Cargamos panel Perfil
+		public void showvPerfil(ArrayList Perfil) {
+			//Llamada a metedo cargar perfil
+			vPerfil.cargarPerfiles(Perfil);	
+			vPerfil.setVisible(true);
+			vIngresos.setVisible(false);
+			vLogin.setVisible(false);
+			vGasto.setVisible(false);
+		}
 		
-	public void showMensaje(String Mensaje){
-		this.textField.setText(Mensaje);
-	}
+		//Cargar Mensaje Inicio
+		public void showMensaje(String Mensaje){
+			this.textField.setText(Mensaje);
+		}
 	
 
 

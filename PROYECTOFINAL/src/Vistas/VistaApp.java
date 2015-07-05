@@ -1,6 +1,4 @@
-package Vista;
-
-
+package Vistas;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -20,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuItem;
 
 import Controlador.MainControler;
-import Controlador.MainControler;
+
 import Modelo.Game;
 
 import java.awt.event.ActionListener;

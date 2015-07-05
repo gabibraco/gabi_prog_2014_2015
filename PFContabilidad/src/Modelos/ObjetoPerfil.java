@@ -1,3 +1,5 @@
+/*Clase que recojera todos los objetos que tenemos en bd( Es decir generamos los diferentes objetos que recogeran nuestros datos*/
+
 package Modelos;
 
 public class ObjetoPerfil {

@@ -1,24 +1,25 @@
+/*Ventana Perfil*/
+
 package Vistas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-
 import java.awt.Color;
-
 import javax.swing.SwingConstants;
-
 import java.awt.Font;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
 import Controller.MainControler;
-
+import Modelos.ObjGastos;
+import Modelos.ObjetoPerfil;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Perfil extends JPanel {
+	//Definicion de Variables
 	private JTextField CajaNombre;
 	private JTextField CajaApellidos;
 	private JTextField CajaDireccion;
@@ -125,12 +126,25 @@ public class Perfil extends JPanel {
 		JButton BotonIngresos = new JButton("Ingresos");
 		BotonIngresos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				MainControler.getInstance().showvIngresos();
 			}
 		});
 		BotonIngresos.setBounds(249, 62, 191, 23);
 		add(BotonIngresos);
 		
-	}
-
+		}
+	  //Metodo para cargar perfiles
+	  public void cargarPerfiles(ArrayList<ObjetoPerfil>  perfil){
+	    	Iterator<ObjetoPerfil> it4= perfil.iterator();
+	            while(it4.hasNext()){
+	            	ObjetoPerfil NPerfil=(ObjetoPerfil)it4.next();
+	                //Añadimos el objeto Game en el modelo
+	            	CajaNombre.setText(NPerfil.getNombre());
+	            	CajaApellidos.setText(NPerfil.getApellidos());
+	            	CajaDireccion.setText(NPerfil.getDireccion());
+	            	CajaEmail.setText(NPerfil.getEmail());
+	            	CajaDNI.setText(NPerfil.getNIF());
+	            	CajaEdad.setText(NPerfil.getEdad());
+		            };
+	  }
 }

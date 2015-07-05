@@ -1,4 +1,4 @@
-package Vista;
+package Vistas;
 
 import java.awt.Component;
 
@@ -18,7 +18,6 @@ import javax.swing.JList;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
 import Controlador.MainControler;
 import Modelo.Game;
 
@@ -64,11 +63,11 @@ public class VistaJuegos extends JPanel {
 		add(VJBoton1);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(170, 66, 120, 29);
+		comboBox.setBounds(170, 58, 120, 50);
 		add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(306, 66, 136, 28);
+		comboBox_1.setBounds(306, 58, 120, 50);
 		add(comboBox_1);
 		
 		textField = new JTextField();
@@ -95,7 +94,7 @@ public class VistaJuegos extends JPanel {
 		textField_Nombre = new JTextField();
 		textField_Nombre.setEnabled(false);
 		textField_Nombre.setEditable(false);
-		textField_Nombre.setBounds(292, 143, 150, 28);
+		textField_Nombre.setBounds(292, 143, 134, 28);
 		add(textField_Nombre);
 		textField_Nombre.setColumns(10);
 		
@@ -111,7 +110,7 @@ public class VistaJuegos extends JPanel {
 		textField_Genero.setEnabled(false);
 		textField_Genero.setEditable(false);
 		textField_Genero.setColumns(10);
-		textField_Genero.setBounds(292, 194, 150, 28);
+		textField_Genero.setBounds(292, 194, 134, 28);
 		add(textField_Genero);
 		
 		JLabel lblPlataforma = new JLabel("Plataforma");
@@ -122,11 +121,11 @@ public class VistaJuegos extends JPanel {
 		textField_Plataforma.setEnabled(false);
 		textField_Plataforma.setEditable(false);
 		textField_Plataforma.setColumns(10);
-		textField_Plataforma.setBounds(296, 249, 146, 28);
+		textField_Plataforma.setBounds(296, 249, 134, 28);
 		add(textField_Plataforma);
 		
 		JPanel panelJList = new JPanel();
-		panelJList.setBounds(24, 135, 255, 226);
+		panelJList.setBounds(24, 135, 255, 240);
 		panelJList.setLayout(null);
 		add(panelJList);
 
@@ -148,14 +147,13 @@ public class VistaJuegos extends JPanel {
         //Evento para mostrar en los campos los datos
         list.addListSelectionListener(new ListSelectionListener() {
               public void valueChanged(ListSelectionEvent listSelectionEvent) {
-
             	  if((listModel!=null)&&(list.getSelectedIndex()>-1)){
             	  //Cojo el juego seleccionado
                 	  Game game=(Game)listModel.getElementAt(list.getSelectedIndex());
                 	  //Coloco los datos en los campos
-                	  	textField_Nombre.setText(game.getMes());
-                  		textField_Genero.setText(game.getImportGF());
-                  		textField_Plataforma.setText(game.getTotalGF());
+                	  	textField_Nombre.setText(game.getNombre());
+                  		textField_Genero.setText(game.getGenero());
+                  		textField_Plataforma.setText(game.getPlataforma());
                   }
                   }
         });

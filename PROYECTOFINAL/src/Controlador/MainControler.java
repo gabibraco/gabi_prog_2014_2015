@@ -17,9 +17,9 @@ import Modelo.Game;
 import Modelo.JuegosModel;
 import Modelo.UsuariosModel;
 import Modelo.ConexionDB;
-import Vista.VistaApp;
-import Vista.VistaJuegos;
-import Vista.VistaPrincipal;
+import Vistas.VistaApp;
+import Vistas.VistaJuegos;
+import Vistas.VistaPrincipal;
 
 public class MainControler {
 	
@@ -49,7 +49,7 @@ public class MainControler {
 		//Instanciar MainController mediante metodo privado. 
 		
 	//Generamos el objeto gamedb para que se conecte a la bbdd que hemos creado previamente. Mediante el metodo le pasamos los datos
-	gameDB=ConexionDB.getInstance("localhost","gamedb","root02","PROGBD2015") ; 
+	gameDB=ConexionDB.getInstance("localhost","gamedb","root","grabemivida") ; 
 	
 	
 	if(gameDB.connectDB()==true) {
